@@ -13,7 +13,8 @@
   font-size: 1.5em;
 }
 
-img {
-  margin: 50px;
+.image-container {
+  margin: 10px;
+  display:inline-block;
 }
 
