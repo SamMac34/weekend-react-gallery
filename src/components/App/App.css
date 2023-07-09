@@ -14,7 +14,7 @@
 }
 
 .image-container {
-  margin: 10px;
+  margin: 1em 2em;
   display: inline-block;
 }
 
@@ -31,4 +31,8 @@ button {
   display: block;
   margin: 5px auto;
 }
+
+/* image {
+  aspect-ratio: auto 3,2;
+} */
 

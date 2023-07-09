@@ -4,11 +4,12 @@ import {useState} from 'react';
 
 // Props = (image object)
 function GalleryItem( props ) {
+
     const [ active, setActive ] = useState(true);
 
     const favoriteImage = () => {
         // axios.put(`/gallery/${props.image.id}`)
-        axios.put(`/gallery/likes/:${props.image.id}`)
+        axios.put(`/gallery/likes/${props.image.id}`)
 
         .then(response => {
             props.fetchImages();
