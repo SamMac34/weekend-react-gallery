@@ -1,23 +1,23 @@
 import axios from 'axios';
 import {useState} from 'react';
-// import './GalleryItem.css'
 
-// Props = (image object)
+// Render each image; props = 'image object' and fetchImages().
 function GalleryItem( props ) {
 
     const [ active, setActive ] = useState(true);
 
-    const favoriteImage = () => {
-        // axios.put(`/gallery/${props.image.id}`)
-        axios.put(`/gallery/likes/${props.image.id}`)
-
+    // Update like count and render updated info to page
+    const likeImage = () => {
+        axios.put(`/gallery/like/${props.image.id}`)
         .then(response => {
+            console.log('In PUT:', response)
             props.fetchImages();
         }).catch(error => {
             console.log('In GalleryItem, error is:', error);
         });
     };
 
+    // Handle toggle between image or image description.
     const handleToggle = () => {
         setActive(isActive => {
             return !isActive;
@@ -39,7 +39,7 @@ function GalleryItem( props ) {
                 </div>
                 )
             }
-        {<button onClick={favoriteImage}>❤️ Like this photo!</button>}
+        {<button onClick={likeImage}>❤️ Like this photo!</button>}
         {<div className="likes-counter">{props.image.likes} people liked this!</div>}
         </div>
     )

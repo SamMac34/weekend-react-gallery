@@ -1,6 +1,6 @@
 import GalleryItem from '../GalleryItem/GalleryItem';
-// import './GalleryList.css'
 
+// Loop through image array and send each image to GalleryItem
 function GalleryList({ galleryList, fetchImages }) {
     return (
         <>
