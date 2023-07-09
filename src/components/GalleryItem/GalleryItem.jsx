@@ -1,35 +1,46 @@
 import axios from 'axios';
+import {useState} from 'react';
 // import './GalleryItem.css'
 
-
+// Props = (image object)
 function GalleryItem( props ) {
-    // {console.log('In GalleryItem, props is:(image object)')}
+    const [ active, setActive ] = useState(true);
 
     const favoriteImage = () => {
-        axios.put(`/gallery/${props.image.id}`)
+        // axios.put(`/gallery/${props.image.id}`)
+        axios.put(`/gallery/likes/:${props.image.id}`)
+
         .then(response => {
             props.fetchImages();
         }).catch(error => {
             console.log('In GalleryItem, error is:', error);
-        })
-    }
+        });
+    };
 
-    const showDescription = () => {
-        {onClick ? 
-        <img key={props.image.key} src={props.image.path}/> :
-        <div>{props.image.description}</div>}
-    }
+    const handleToggle = () => {
+        setActive(isActive => {
+            return !isActive;
+        });
+    };
 
 
     return (
-        <>
-        <div onClick={showDescription} key={props.image.key} className="image-container">
-            {<img key={props.image.key} src={props.image.path} />}
-            {<p className="image-desc">{props.image.description}</p>}
-            {<div className="likes-counter">{props.image.likes}</div>}
-            {<button onClick={favoriteImage}>Like</button>}
+        <div key={props.image.key} className="image-container">
+            {active ? (
+                <img 
+                    src={props.image.path}
+                    alt="goat"
+                    onClick={() => handleToggle()}
+                />
+                ) : (
+                <div className="description-container" onClick={() => handleToggle()}>
+                    {props.image.description}
+                </div>
+                )
+            }
+        {<button onClick={favoriteImage}>❤️ Like this photo!</button>}
+        {<div className="likes-counter">{props.image.likes} people liked this!</div>}
         </div>
-        </>
     )
 }
 

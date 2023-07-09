@@ -14,7 +14,7 @@ function App() {
       method: 'GET',
       url: '/gallery'
     }).then(response => {
-      // console.log('In fetchImages, res is:', response);
+      // console.log('In fetchImages, res is:', response, response.data);
       setGalleryList(response.data)
     }).catch(error => {
       console.log('Error fetching images, error is:', error);
